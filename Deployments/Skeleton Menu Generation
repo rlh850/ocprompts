@@ -57,8 +57,7 @@ Font Size: 8
 Ensure that the Slot value increments by 1 for each new entry, starting from 0.
 
 SCRIPT (DO NOT PASTE INTO CHATGPT, ONLY THE SPREADSHEET)
-=CONCATENATE("INSERT INTO menu_category(cat_name, set_order, page, slot, color, hasTakeout, hasDelivery, hasDineIn, hasTable, hasBar, font_size) VALUES ('";A2;"','";B2;"','";C2;"','";D2;"','";E2;"','";F2;"','";G2;"','";H2;"','";I2;"','";J2;"','";K2;"');")
-
+=CONCATENATE("INSERT INTO menu_menus (cat_id, menu_name, menu_abb, slot, color, font_size, sub_items) VALUES ((SELECT cat_id FROM menu_category WHERE cat_name = '";A2;"'), '";C2;"', '', ";B2;", '";F2;"', '";G2;"', '";K2;"');";"INSERT INTO menu_items (menu_id, item_name, item_abb, item_price, taxable, printer, printer2, printer3) "&"SELECT menu_id, '"&C2&"', '', '"&F2&"', '"&G2&"', '"&H2&"', '"&I2&"', '"&J2&"' "&"FROM menu_menus "&"WHERE menu_name = '"&C2&"';")
 Prompt 2:
 You will act as a spreadsheet generator. You will only output a spreadsheet and nothing else. 
 
@@ -92,7 +91,8 @@ Category Name: Must match the name in the spreadsheet above or else it won't wor
 Leave the alternate name blank.
 
 SCRIPT (DO NOT PASTE INTO CHATGPT, ONLY THE SPREADSHEET)
-=CONCATENATE("INSERT INTO menu_menus (cat_id, menu_name, menu_abb, slot, color, font_size, sub_items) VALUES ((SELECT cat_id FROM menu_category WHERE cat_name = '";A2;"'), '";C2;"', '', ";B2;", '";F2;"', '";G2;"', '";K2;"');";"INSERT INTO menu_items (menu_id, item_name, item_abb, item_price, taxable, printer, printer2, printer3) "&"SELECT menu_id, '"&C2&"', '"&C2&"', '"&F2&"', '"&G2&"', '"&H2&"', '"&I2&"', '"&J2&"' "&"FROM menu_menus "&"WHERE menu_name = '"&C2&"';")
+=CONCATENATE("INSERT INTO menu_menus (cat_id, menu_name, menu_abb, slot, color, font_size, sub_items) VALUES ((SELECT cat_id FROM menu_category WHERE cat_name = '";A2;"'), '";C2;"', '', ";B2;", '";F2;"', '";G2;"', '";K2;"');";"INSERT INTO menu_items (menu_id, item_name, item_abb, item_price, taxable, printer, printer2, printer3) "&"SELECT menu_id, '"&C2&"', '', '"&F2&"', '"&G2&"', '"&H2&"', '"&I2&"', '"&J2&"' "&"FROM menu_menus "&"WHERE menu_name = '"&C2&"';")
+
 Prompt 3:
 You will act as a spreadsheet generator. You will only output a spreadsheet and nothing else. 
 
@@ -167,21 +167,54 @@ SCRIPT (DO NOT PASTE INTO CHATGPT, ONLY THE SPREADSHEET)
 
 
 Clear Menu:
--- Delete from menu_item2optionset table
-DELETE FROM menu_item2optionset;
-
--- Delete from menu_options table
-DELETE FROM menu_options;
-
--- Delete from menu_optionsets table
-DELETE FROM menu_optionsets;
-
--- Delete from menu_items table
-DELETE FROM menu_items;
-
--- Delete from menu_menus table
-DELETE FROM menu_menus;
-
--- Delete from menu_category table
 DELETE FROM menu_category;
+DELETE FROM menu_category_images;
+DELETE FROM menu_category2timeset;
+DELETE FROM menu_counters;
+DELETE FROM menu_hide2_terminal;
+DELETE FROM menu_history;
+DELETE FROM menu_item_ref;
+DELETE FROM menu_item2auto_fee;
+DELETE FROM menu_item2counter;
+DELETE FROM menu_item2inventory_batch;
+DELETE FROM menu_item2option;
+DELETE FROM menu_item2optionset;
+DELETE FROM menu_item2recommended;
+DELETE FROM menu_item2timeset;
+DELETE FROM menu_items;
+DELETE FROM menu_items_images;
+DELETE FROM menu_items_timed;
+DELETE FROM menu_menu2timeset;
+DELETE FROM menu_menus;
+DELETE FROM menu_menus_pages;
+DELETE FROM menu_modifiers;
+DELETE FROM menu_modifiers_extended;
+DELETE FROM menu_multisets;
+DELETE FROM menu_option2optionset;
+DELETE FROM menu_options;
+DELETE FROM menu_options_images;
+DELETE FROM menu_options_kds_station_bridge;
+DELETE FROM menu_options_templates;
+DELETE FROM menu_optionsets;
+DELETE FROM menu_price_levels;
+DELETE FROM menu_recommended_items;
+DELETE FROM menu_recommended_set;
+DELETE FROM menu_report_category;
+DELETE FROM menu_report_group;
+DELETE FROM menu_report_item2category;
+DELETE FROM menu_specials;
+DELETE FROM menu_specials_groups;
+DELETE FROM menu_specials_items;
+DELETE FROM menu_subitems_images;
+DELETE FROM menu_taxcodes;
+DELETE FROM menu_taxcodes_edits;
+DELETE FROM menu_times;
+DELETE FROM menu_timesets;
+DELETE FROM menu_version_info;
+DELETE FROM MenuSyncPending;
+DELETE FROM KioskMenu;
+DELETE FROM KioskMenuButton;
+DELETE FROM KioskMenuCategory;
+DELETE FROM KioskMenuDefaultItem;
+DELETE FROM KioskMenuOption;
 
