@@ -92,8 +92,7 @@ Category Name: Must match the name in the spreadsheet above or else it won't wor
 Leave the alternate name blank.
 
 SCRIPT (DO NOT PASTE INTO CHATGPT, ONLY THE SPREADSHEET)
-=CONCATENATE("INSERT INTO menu_menus (cat_id, menu_name, menu_abb, slot, color, font_size, sub_items) VALUES ((SELECT cat_id FROM menu_category WHERE cat_name = '";A2;"'), '";C2;"', '', ";B2;", '";F2;"', '";G2;"', '";K2;"');";" INSERT INTO menu_items (menu_id, item_name, item_abb, item_price, taxable, printer, printer2, printer3) SELECT menu_id, '";C2;"', '";C2;"', '";D2;"', '";H2;"', '";I2;"', '";J2;"', '";K2;"' FROM menu_menus WHERE menu_name = '";C2;"';")
-
+=CONCATENATE("INSERT INTO menu_menus (cat_id, menu_name, menu_abb, slot, color, font_size, sub_items) VALUES ((SELECT cat_id FROM menu_category WHERE cat_name = '";A2;"'), '";C2;"', '', ";B2;", '";F2;"', '";G2;"', '";K2;"');";"INSERT INTO menu_items (menu_id, item_name, item_abb, item_price, taxable, printer, printer2, printer3) "&"SELECT menu_id, '"&C2&"', '"&C2&"', '"&F2&"', '"&G2&"', '"&H2&"', '"&I2&"', '"&J2&"' "&"FROM menu_menus "&"WHERE menu_name = '"&C2&"';")
 Prompt 3:
 You will act as a spreadsheet generator. You will only output a spreadsheet and nothing else. 
 
