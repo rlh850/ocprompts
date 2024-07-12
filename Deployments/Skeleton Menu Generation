@@ -164,3 +164,24 @@ OptionSet ID must be one of the modifier sets created in the spreadsheets above.
 
 SCRIPT (DO NOT PASTE INTO CHATGPT, ONLY THE SPREADSHEET)
 =CONCATENATE("INSERT INTO menu_item2optionset(item_id, optionset_id) VALUES ((SELECT TOP 1 item_id FROM menu_items WHERE item_name = '";A2;"'), (SELECT TOP 1 optionset_id FROM menu_optionsets WHERE optionset_name = '";B2;"'));")
+
+
+Clear Menu:
+-- Delete from menu_item2optionset table
+DELETE FROM menu_item2optionset;
+
+-- Delete from menu_options table
+DELETE FROM menu_options;
+
+-- Delete from menu_optionsets table
+DELETE FROM menu_optionsets;
+
+-- Delete from menu_items table
+DELETE FROM menu_items;
+
+-- Delete from menu_menus table
+DELETE FROM menu_menus;
+
+-- Delete from menu_category table
+DELETE FROM menu_category;
+
